@@ -22,7 +22,15 @@ public class BalaEnemigo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ReiniciarNivel reinicio = collision.gameObject.GetComponent<ReiniciarNivel>();
+            if (reinicio != null)
+            {
+                reinicio.Reiniciar(gameObject); 
+            }
+            else
+            {
+                Debug.LogWarning("El jugador no tiene el componente ReiniciarNivel.");
+            }
         }
 
 

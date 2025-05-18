@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AbrirPuerta : MonoBehaviour
 {
@@ -8,37 +10,45 @@ public class AbrirPuerta : MonoBehaviour
     public GameObject puertaAsociada;
     public GameObject palanca;
 
-     private Animator animPuerta;
+    private Animator animPuerta;
     private Animator animPalanca;
 
     private bool estaJugador = false;
     private bool puertaAbierta = false;
     private bool palancaActivada = false;
 
+    private bool palancaUsada = false;
+    private float timer;
+    private bool timerMostrado = false;
+
     void Start()
     {
-       animPuerta = puertaAsociada?.GetComponent<Animator>();
+        animPuerta = puertaAsociada?.GetComponent<Animator>();
         animPalanca = palanca?.GetComponent<Animator>();
+        timer = 0;
     }
 
-   void Update()
+    void Update()
     {
-        if (tipo == TipoPalanca.Boton && estaJugador && Input.GetKeyDown(KeyCode.Space))
+        if (SceneManager.GetActiveScene().name == "Nivel2")
         {
+            TimerPalanca();
+        }
+        if (tipo == TipoPalanca.Boton && estaJugador && Input.GetKeyDown(KeyCode.Space) && !palancaUsada)
+        {
+            Debug.Log("Interactuo con palanca");
             palancaActivada = !palancaActivada;
             puertaAbierta = !puertaAbierta;
 
             AnimacionesControlador.SetBool(animPalanca, "estaActivada", palancaActivada);
             AnimacionesControlador.SetBool(animPuerta, "estaAbierta", puertaAbierta);
-            if(gameObject.CompareTag("lever1")){
-                
-                 Debug.Log("La palanca ha sido activada.");
-            }
+
+            palancaUsada = true;
         }
     }
 
 
-   private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
@@ -64,11 +74,25 @@ public class AbrirPuerta : MonoBehaviour
         }
     }
 
-  public bool EstaAbierta() => puertaAbierta;
+    public bool EstaAbierta() => puertaAbierta;
 
     public void Abrir()
     {
         puertaAbierta = true;
-         AnimacionesControlador.SetBool(animPuerta, "estaAbierta", true);
+        AnimacionesControlador.SetBool(animPuerta, "estaAbierta", true);
     }
+
+    private void TimerPalanca()
+    {
+        if (!palancaUsada)
+        {
+            timer += Time.deltaTime;
+        }
+        else if (!timerMostrado)
+        {
+            Debug.Log("Tiempo hasta activar palanca: " + timer.ToString("F2") + " segundos.");
+            timerMostrado = true;
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 268150971443907905}
   - component: {fileID: 7104501951264421533}
   - component: {fileID: 7034117025645215837}
+  - component: {fileID: -4478539113819508000}
   m_Layer: 0
   m_Name: Trampa
   m_TagString: Obstacle
@@ -183,3 +184,16 @@ MonoBehaviour:
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &-4478539113819508000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166454305216355735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765a3df32cfc94a428f990cb1c36a782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: 2

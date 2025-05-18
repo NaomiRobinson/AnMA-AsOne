@@ -43,9 +43,7 @@ public class PlataformaMovil : MonoBehaviour
         {
             if (contacto.normal.y > 0.5f) // El jugador toca desde abajo
             {
-                Debug.Log("El jugador murió al tocar la plataforma desde abajo");
 
-                  other.gameObject.GetComponent<ReiniciarNivel>().Reiniciar();  
           
                 other.transform.SetParent(null);
                 break;

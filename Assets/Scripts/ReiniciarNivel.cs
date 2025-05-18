@@ -9,13 +9,23 @@ public class ReiniciarNivel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obstacle"))
         {
-           Reiniciar();
+            Reiniciar(collision.gameObject);
         }
     }
 
-    public void  Reiniciar(){
-          Debug.Log("GameOver");
-          
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    public void Reiniciar(GameObject causante)
+    {
+        Debug.Log("GameOver");
+        string type = causante.tag;
+        string name = "Desconocido";
+
+        Identidad identidad = causante.GetComponent<Identidad>();
+        if (identidad != null)
+        {
+            name = identidad.nombre.ToString();
+        }
+
+        Debug.Log($"Se murió. Lo mató {name} del grupo {type}.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

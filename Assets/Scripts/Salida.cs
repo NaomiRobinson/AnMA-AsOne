@@ -32,7 +32,7 @@ public class Salida : MonoBehaviour
             }
             if (!requiereAbrir)
             {
-               AnimacionesControlador.SetBool(animPuerta, "estaAbierta", true);
+                AnimacionesControlador.SetBool(animPuerta, "estaAbierta", true);
 
             }
             if (!requiereAbrir && palancaAsociada != null)
