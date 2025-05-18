@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TDJ4.sln"
+    "dotnet.defaultSolution": "AnMA-AsOne.sln"
 }

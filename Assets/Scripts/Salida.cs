@@ -80,7 +80,7 @@ public class Salida : MonoBehaviour
     {
         Debug.Log("Ambos jugadores están en sus salidas");
         Debug.Log("Completo un nivel");
-SessionData.level++;
+        SessionData.level++;
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
