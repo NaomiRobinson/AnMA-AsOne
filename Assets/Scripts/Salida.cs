@@ -6,25 +6,33 @@ using static StaticVariables;
 public class Salida : MonoBehaviour
 {
     public GameObject jugadorAsignado;
-
     private Animator animPuerta;
-
     public AbrirPuerta palancaAsociada;
     private static int jugadoresEnSalida = 0;
-
     public bool requiereAbrir = false;
 
+    private float tiempoNivel = 0f;
+    private bool nivelEnCurso = true;
 
     void Start()
     {
         animPuerta = GetComponent<Animator>();
+        tiempoNivel = 0f;
+        nivelEnCurso = true;
     }
+
+    void Update()
+    {
+        if (nivelEnCurso)
+        {
+            tiempoNivel += Time.deltaTime;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.gameObject == jugadorAsignado)
         {
-
             if (requiereAbrir && palancaAsociada != null && !palancaAsociada.EstaAbierta())
             {
                 Debug.Log("La puerta está cerrada, no puedes pasar.");
@@ -33,16 +41,13 @@ public class Salida : MonoBehaviour
             if (!requiereAbrir)
             {
                 AnimacionesControlador.SetBool(animPuerta, "estaAbierta", true);
-
             }
             if (!requiereAbrir && palancaAsociada != null)
             {
                 palancaAsociada.Abrir();
-
             }
 
             jugadoresEnSalida++;
-
 
             if (jugadoresEnSalida == 2)
             {
@@ -57,8 +62,6 @@ public class Salida : MonoBehaviour
             }
         }
     }
-
-
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -78,11 +81,17 @@ public class Salida : MonoBehaviour
 
     private void PasarNivel()
     {
+        nivelEnCurso = false; 
+        SessionData.time = Mathf.RoundToInt(tiempoNivel);
+
+        if (GameStats.Instance != null)
+            GameStats.Instance.SumarTiempo(tiempoNivel);
+
         Debug.Log("Ambos jugadores están en sus salidas");
         Debug.Log("Completo un nivel");
+        Debug.Log($"¡Completaste el nivel {SessionData.level} en {SessionData.time} segundos!");
+        Debug.Log($"Te moriste {SessionData.death} veces en total.");
         SessionData.level++;
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
-
     }
-
 }

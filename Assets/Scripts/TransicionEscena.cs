@@ -48,21 +48,14 @@ public class TransicionEscena : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("LevelStart: " + scene.name);
+        Debug.Log($"Iniciando nivel: {SessionData.level}");
 
-       
         LevelStartEvent LevelStart = new LevelStartEvent
         { 
             level = SessionData.level
         };
 
         AnalyticsService.Instance.RecordEvent(LevelStart);
-
-
-        if (scene.name == "Victoria")
-        {
-            Debug.Log("GameComplete");
-        }
     }
 
 

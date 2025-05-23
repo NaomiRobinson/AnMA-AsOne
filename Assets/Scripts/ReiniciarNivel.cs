@@ -25,7 +25,12 @@ public class ReiniciarNivel : MonoBehaviour
             name = identidad.nombre.ToString();
         }
 
-        Debug.Log($"Se murió. Lo mató {name} del grupo {type}.");
+        // Sumar una muerte
+        SessionData.death++;
+        if (GameStats.Instance != null)
+            GameStats.Instance.SumarMuerte(); 
+
+        Debug.Log($"Se murió en el nivel {SessionData.level}. Lo mató {name} del grupo {type}.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
