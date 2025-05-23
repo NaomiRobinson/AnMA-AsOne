@@ -15,8 +15,6 @@ public class TransicionEscena : MonoBehaviour
     public float tiempoDisolverEntrada;
     public float tiempoDisolverSalida;
 
-
-
     private void Awake()
     {
         if (Instance == null)
@@ -35,7 +33,6 @@ public class TransicionEscena : MonoBehaviour
 
     }
 
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -48,6 +45,7 @@ public class TransicionEscena : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //EVENTO LEVELSTART
         Debug.Log($"Iniciando nivel: {SessionData.level}");
 
         LevelStartEvent LevelStart = new LevelStartEvent

@@ -11,9 +11,10 @@ public class Salida : MonoBehaviour
     private static int jugadoresEnSalida = 0;
     public bool requiereAbrir = false;
 
+    //VARIABLES PARA CADA NIVEL INDIVIDUAL
     private float tiempoNivel = 0f;
     private bool nivelEnCurso = true;
-    private static int muertesNivel = 0; // <-- CAMBIA A STATIC
+    private static int muertesNivel = 0; 
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Salida : MonoBehaviour
         nivelEnCurso = true;
     }
 
+    //CONTADOR PARA EL TIEMPO
     void Update()
     {
         if (nivelEnCurso)
@@ -89,14 +91,17 @@ public class Salida : MonoBehaviour
             GameStats.Instance.SumarTiempo(tiempoNivel);
 
         Debug.Log("Ambos jugadores están en sus salidas");
+
+        //EVENTO LEVELCOMPLETE
         Debug.Log("Completo un nivel");
         Debug.Log($"¡Completaste el nivel {SessionData.level} en {SessionData.time} segundos!");
         Debug.Log($"Te moriste {muertesNivel} veces en este nivel."); // <-- SOLO LAS DE ESTE NIVEL
-        SessionData.level++;
+        SessionData.level++; //CONTADOR DE NIVEL
         muertesNivel = 0; // Reiniciar para el próximo nivel
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    //ACUMULADOR MUERTE POR NIVEL
     public void SumarMuerteNivel()
     {
         muertesNivel++;

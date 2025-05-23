@@ -11,9 +11,9 @@ public class StaticVariables : MonoBehaviour
         public static string name;
     }
     private void Awake()
-  {
-    DontDestroyOnLoad(gameObject);
-  }
+    {
+      DontDestroyOnLoad(gameObject);
+    }
 }
 
 

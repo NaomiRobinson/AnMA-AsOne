@@ -35,6 +35,7 @@ public class ReiniciarNivel : MonoBehaviour
         if (salida != null)
             salida.SumarMuerteNivel();
 
+        //EVENTO GAMEOVER
         Debug.Log($"Se murió en el nivel {SessionData.level}. Lo mató {name} del grupo {type}.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

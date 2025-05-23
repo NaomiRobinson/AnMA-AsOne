@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Victory : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //EVENTO GAME COMPLETE
         Debug.Log("GameComplete");
         Debug.Log($"¡Ganaste el nivel {StaticVariables.SessionData.level} en {StaticVariables.SessionData.time} segundos, con {StaticVariables.SessionData.death} muertes!");
 
@@ -14,11 +14,5 @@ public class Victory : MonoBehaviour
             Debug.Log($"Tiempo total: {GameStats.Instance.tiempoTotal:F2} segundos");
             Debug.Log($"Muertes totales: {GameStats.Instance.muertesTotales}");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
