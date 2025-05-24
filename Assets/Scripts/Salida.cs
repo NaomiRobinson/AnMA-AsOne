@@ -16,7 +16,7 @@ public class Salida : MonoBehaviour
     //VARIABLES PARA CADA NIVEL INDIVIDUAL
     private float tiempoNivel = 0f;
     private bool nivelEnCurso = true;
-    private static int muertesNivel = 0; 
+    private static int muertesNivel = 0;
 
     void Start()
     {
@@ -101,8 +101,8 @@ public class Salida : MonoBehaviour
         SessionData.level++; //CONTADOR DE NIVEL
         muertesNivel = 0; // Reiniciar para el próximo nivel
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
-        
-        
+
+
         LevelCompleteEvent LevelComplete = new LevelCompleteEvent
         {
             level = SessionData.level,
@@ -110,7 +110,7 @@ public class Salida : MonoBehaviour
             death = SessionData.death,
         };
 
-        // AnalyticsService.Instance.RecordEvent(LevelComplete);
+        AnalyticsService.Instance.RecordEvent(LevelComplete);
     }
 
     //ACUMULADOR MUERTE POR NIVEL
