@@ -98,7 +98,6 @@ public class Salida : MonoBehaviour
         Debug.Log("Completo un nivel");
         Debug.Log($"¡Completaste el nivel {SessionData.level} en {SessionData.time} segundos!");
         Debug.Log($"Te moriste {muertesNivel} veces en este nivel."); // <-- SOLO LAS DE ESTE NIVEL
-        SessionData.level++; //CONTADOR DE NIVEL
         muertesNivel = 0; // Reiniciar para el próximo nivel
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -111,7 +110,10 @@ public class Salida : MonoBehaviour
         };
 
         AnalyticsService.Instance.RecordEvent(LevelComplete);
+
+        SessionData.level++; //CONTADOR DE NIVEL
     }
+
 
     //ACUMULADOR MUERTE POR NIVEL
     public void SumarMuerteNivel()
