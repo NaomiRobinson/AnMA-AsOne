@@ -1,6 +1,9 @@
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static StaticVariables;
+using Unity.Services.Analytics;
+using static EventManager;
 
 public class AbrirPuerta : MonoBehaviour
 {
@@ -44,6 +47,15 @@ public class AbrirPuerta : MonoBehaviour
             AnimacionesControlador.SetBool(animPuerta, "estaAbierta", puertaAbierta);
 
             palancaUsada = true;
+
+            InteractEvent Interact = new InteractEvent
+            {
+                time = SessionData.time
+                
+            };
+
+            // AnalyticsService.Instance.RecordEvent(Interact);
+
         }
     }
 

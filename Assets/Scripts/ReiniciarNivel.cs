@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static StaticVariables;
+using Unity.Services.Analytics;
+using static EventManager;
 
 public class ReiniciarNivel : MonoBehaviour
 {
@@ -37,6 +39,20 @@ public class ReiniciarNivel : MonoBehaviour
 
         //EVENTO GAMEOVER
         Debug.Log($"Se murió en el nivel {SessionData.level}. Lo mató {name} del grupo {type}.");
+        SessionData.name = name;
+        SessionData.type = type;
+
+
+
+        GameOverEvent GameOver = new GameOverEvent
+        {
+            level = SessionData.level,
+            name = SessionData.name,
+            type = SessionData.type,
+        };
+
+        // AnalyticsService.Instance.RecordEvent(GameOver);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

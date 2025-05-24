@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static StaticVariables;
+using Unity.Services.Analytics;
+using static EventManager;
 
 public class Salida : MonoBehaviour
 {
@@ -84,7 +86,7 @@ public class Salida : MonoBehaviour
 
     private void PasarNivel()
     {
-        nivelEnCurso = false; 
+        nivelEnCurso = false;
         SessionData.time = Mathf.RoundToInt(tiempoNivel);
 
         if (GameStats.Instance != null)
@@ -99,6 +101,16 @@ public class Salida : MonoBehaviour
         SessionData.level++; //CONTADOR DE NIVEL
         muertesNivel = 0; // Reiniciar para el próximo nivel
         TransicionEscena.Instance.Disolversalida(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        
+        LevelCompleteEvent LevelComplete = new LevelCompleteEvent
+        {
+            level = SessionData.level,
+            time = SessionData.time,
+            death = SessionData.death,
+        };
+
+        // AnalyticsService.Instance.RecordEvent(LevelComplete);
     }
 
     //ACUMULADOR MUERTE POR NIVEL
