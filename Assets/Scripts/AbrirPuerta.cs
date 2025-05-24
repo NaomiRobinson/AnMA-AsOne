@@ -48,13 +48,6 @@ public class AbrirPuerta : MonoBehaviour
 
             palancaUsada = true;
 
-            InteractEvent Interact = new InteractEvent
-            {
-                time = SessionData.time
-                
-            };
-
-            // AnalyticsService.Instance.RecordEvent(Interact);
 
         }
     }
@@ -104,6 +97,17 @@ public class AbrirPuerta : MonoBehaviour
         {
             Debug.Log("Tiempo hasta activar palanca: " + timer.ToString("F2") + " segundos.");
             timerMostrado = true;
+
+            SessionData.time = Mathf.RoundToInt(timer);
+
+            InteractEvent Interact = new InteractEvent
+            {
+                time = SessionData.time
+
+            };
+
+            AnalyticsService.Instance.RecordEvent(Interact);
+
         }
     }
 

@@ -51,7 +51,7 @@ public class ReiniciarNivel : MonoBehaviour
             type = SessionData.type,
         };
 
-        // AnalyticsService.Instance.RecordEvent(GameOver);
+        AnalyticsService.Instance.RecordEvent(GameOver);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
