@@ -49,7 +49,7 @@ public class TransicionEscena : MonoBehaviour
         Debug.Log($"Iniciando nivel: {SessionData.level}");
 
         LevelStartEvent LevelStart = new LevelStartEvent
-        { 
+        {
             level = SessionData.level
         };
 
