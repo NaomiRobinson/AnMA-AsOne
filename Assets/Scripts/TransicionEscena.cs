@@ -46,14 +46,17 @@ public class TransicionEscena : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //EVENTO LEVELSTART
-        Debug.Log($"Iniciando nivel: {SessionData.level}");
-
-        LevelStartEvent LevelStart = new LevelStartEvent
+        if (scene.name != "Victoria")
         {
-            level = SessionData.level
-        };
+            Debug.Log($"Iniciando nivel: {SessionData.level}");
 
-        AnalyticsService.Instance.RecordEvent(LevelStart);
+            LevelStartEvent LevelStart = new LevelStartEvent
+            {
+                level = SessionData.level
+            };
+
+            AnalyticsService.Instance.RecordEvent(LevelStart);
+        }
     }
 
 

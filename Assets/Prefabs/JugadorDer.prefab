@@ -4942,7 +4942,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: aa4a36305ebb2064e8c000cb9dc12f96, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5012,7 +5012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jugadorAsignado: {fileID: 5911614825838371142}
-  puertaAsociada: {fileID: 0}
+  palancaAsociada: {fileID: 0}
   requiereAbrir: 0
 --- !u!114 &1212816499475459998
 MonoBehaviour:
